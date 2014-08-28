@@ -8,7 +8,7 @@ var rename = require("gulp-rename");
 // Use stylus and nib
 gulp.task('stylus', function () {
   gulp.src('./stylus/smoothie.styl')
-    .pipe(stylus({ use: [nib()]}))
+    .pipe(stylus({use: [nib()]}))
     .pipe(rename("smoothie.css"))
     .pipe(gulp.dest('./dist/'));
 });
