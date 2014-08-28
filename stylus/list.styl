@@ -1,0 +1,39 @@
+.sm-list
+  list-style none
+  padding 0
+  margin 0
+  .label, .divider
+    height: 28px;
+    line-height 28px
+    background-color: #D5E5E6;
+    padding 0
+    padding-left 12px
+    color #778
+    font-size 12px
+
+  .arrow
+    padding-right 25px
+
+  .arrow::after
+    position absolute
+    content ''
+    border-top solid 2px #969696
+    border-right solid 2px #969696
+    right: 10px
+    top: 50%
+    width 8px
+    height 8px
+    margin-top -4px
+    transform rotate(45deg)
+
+  li
+    position relative
+    border-bottom: 1px solid rgba(0,0,0,0.05)
+    padding 10px 10px 10px 20px
+    color #444
+    background-color #fff
+
+  li:last-child
+    border-bottom none
+
+

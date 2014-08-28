@@ -1,0 +1,237 @@
+@require 'color.styl'
+
+border-color = #e1e1e1
+.sm-input
+  appearance none
+  border-radius 0
+  display block
+  padding 10px 12px
+  width 100%
+  background-color #fff
+  border none
+  outline none
+  height 40px
+  font-size 16px
+  line-height 18px
+  // margin 10px 0
+  border-radius 2px
+  &.space
+    margin 10px 0
+  &.small
+    height 34px
+    font-size 12px
+  &.large
+    font-size 18px
+    height 46px
+
+  &[type="text"]
+    border 1px solid border-color
+    &:focus
+      border-color CPRIMARY
+      box-shadow 0 0 3px CPRIMARY
+  &[readonly]
+    background-color #eee
+
+  textarea&
+    border 1px solid border-color
+    min-height 90px
+
+  &.success
+    border-color CSUCCESS
+  &.error
+    border-color CDANGER
+  &.warning
+    border-color CWARNING
+  
+  &[disabled]
+    opacity 0.5
+    pointer-events none
+    background-color #eee;
+fieldset[disabled] .sm-input
+    opacity 0.5
+    pointer-events none
+    background-color #eee;
+
+.sm-input[type="search"]
+  // background-image:url(search.png)
+  // background-repeat no-repeat
+  // background-position 12px center
+  // background-size 16px 16px
+  // padding-left 30px
+
+.sm-select
+  position relative
+  &::after
+    content " "
+    position absolute
+    right 10px 
+    top 50%
+    width 0
+    height 0
+    border-top 10px solid  border-color
+    border-left 10px solid transparent
+    border-right 10px solid transparent
+    margin-top  -5px
+  & select, & .select
+    @extend .sm-input
+    border 1px solid border-color
+    padding-right 35px
+
+.sm-check
+  position relative
+  height 20px
+  display block
+  margin-top 8px
+
+  &::before
+    content " "
+    display block
+    width 16px
+    height 16px
+    border 2px solid CPRIMARY
+    position absolute
+    left 0
+    top 50%
+    margin-top -9px
+    border-radius 4px
+    pointer-events none
+  label
+    line-height 20px
+    white-space nowrap
+    word-wrap normal
+    overflow hidden
+    text-overflow ellipsis
+    display inline-block
+    padding-left 25px
+  input[type="checkbox"]
+    display none
+
+  label::after
+    content " "
+    height 10px
+    width 5px
+    border-right  2px solid CPRIMARY
+    border-bottom  2px solid CPRIMARY
+    display none
+    position absolute
+    left 6px
+    top 50%
+    margin-top -6px
+    transform rotate(45deg)
+    pointer-events none
+
+
+  input[type="checkbox"]:checked + label::after
+    display: block
+checkbox-mixins(".sm-check")
+.sm-radio
+  position relative
+  height 20px
+  display block
+  margin-top 8px
+
+  &::before
+    content " "
+    display block
+    width 16px
+    height 16px
+    border 2px solid CPRIMARY
+    position absolute
+    left 0
+    top 50%
+    margin-top -9px
+    border-radius 100%
+    pointer-events none
+
+  label
+    line-height 20px
+    white-space nowrap
+    word-wrap normal
+    overflow hidden
+    text-overflow ellipsis
+    display inline-block
+    padding-left 25px
+  input[type="radio"]
+    display none
+
+  label::after
+    content " "
+    height 10px
+    width 10px
+    display none
+    position absolute
+    left 5px
+    top 50%
+    margin-top -4px
+    border-radius 100%
+    background-color CPRIMARY
+    pointer-events none
+
+  input[type="radio"]:checked + label::after
+    display: block
+radio-mixins(".sm-radio")
+
+.sm-toggle
+  position relative
+  height 30px
+  display block
+  margin-top 8px
+  overflow hidden
+  width 80px
+  // background-color CDEFAULT
+  // width 80px
+  border-radius 15px
+  
+  label
+    line-height 30px
+    height 30px
+    width 80px
+    white-space nowrap
+    word-wrap normal
+    text-overflow ellipsis
+    display inline-block
+    padding-left 35px
+    color #fff
+    background-color CDEFAULT
+    // border-radius 15px
+    // position relative
+    // transition all  300ms
+    span
+      display block
+      line-height 30px
+      height 30px
+      width 80px
+      background-color CPRIMARY
+      float left
+      margin-left -115px
+      padding-right 35px
+      text-align right
+      transition margin 300ms
+      
+    &::before
+      content " "
+      display block
+      width 20px
+      height 20px
+      background-color CGRAY
+      position absolute
+      z-index 10
+      left 5px
+      top 50%
+      margin-top -10px
+      border-radius 100%
+      transition left 300ms, color 300ms
+
+  input[type="checkbox"]
+    display none
+
+  input[type="checkbox"]:checked + label span
+    margin-left -35px
+
+  input[type="checkbox"]:checked + label::before
+    left 55px
+    background-color rgba(52, 73, 94, 0.5)
+
+toggle-mixins(".sm-toggle")
+
+

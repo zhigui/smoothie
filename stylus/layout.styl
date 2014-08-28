@@ -1,0 +1,207 @@
+/***    
+Layout
+***/
+
+.sm-flex
+  display flex
+
+.sm-flex
+  for $i in 0...12
+    .col{$i}
+      flex $i
+
+  for $i in 1...12
+    .order{$i}
+      order $i
+
+.sm-flex.col
+    flex-direction column
+    // box-orient vertical 
+
+.sm-flex.row
+    // box-orient horizontal
+    flex-direction row
+
+.sm-flex.center
+    // box-pack center
+    justify-content center
+
+.sm-flex.middle
+    // box-align center
+    align-items center
+
+.sm-flex.justify
+    // box-pack justify
+    justify-content space-between
+
+.sm-flex.stretch
+    // box-align stretch
+    align-items stretch
+
+.sm-area
+  margin 8px
+  border-radius 2px
+  // padding 8px
+  background-color #fff
+  overflow hidden
+  &.space
+    padding 8px
+
+.sm-area-title
+  font-size 16px
+  font-weight bold
+  margin-left 5px
+ 
+// 元素对齐 
+.sm-left
+  float left
+
+.sm-right
+  float right
+
+.sm-center
+  display block
+  margin-left auto
+  margin-right auto
+
+
+// 元素可见性
+.sm-block
+  display block!important
+
+.sm-inline
+  display inline!important
+
+.sm-ib
+  display inline-block!important
+
+.sm-visible
+  display visible!important
+
+.sm-hidden
+  display hidden!important
+
+
+.sm-hide
+  display none!important
+
+// 清除浮动
+.sm-clear
+  clearfix()
+
+// 溢出省略
+.sm-ellipsis
+  white-space nowrap
+  word-wrap normal
+  overflow hidden
+  text-overflow ellipsis
+.sm-ellipsis2
+  display flex
+  -webkit-line-clamp 2
+  overflow hidden
+  text-overflow ellipsis
+  flex-direction column
+
+for $i in 3...5
+  .sm-ellipsis{$i}
+    @extend .sm-ellipsis2;
+    -webkit-line-clamp $i
+
+// 溢出滚动
+.sm-scroll
+  overflow scroll
+  -ms-overflow-style -ms-autohiding-scrollbar
+  -webkit-overflow-scrolling touch
+.sm-scrollx
+  // overflow-y: hidden;
+  overflow-x auto
+  -ms-overflow-style -ms-autohiding-scrollbar
+  -webkit-overflow-scrolling touch
+.sm-scrolly
+  overflow-y scroll
+  -ms-overflow-style -ms-autohiding-scrollbar
+  -webkit-overflow-scrolling: touch
+  // resize: vertical
+
+space-mixins(prop)
+  .sm-{prop}-none
+    {prop} 0
+  .sm-{prop}-xs
+    {prop} 5px
+  .sm-{prop}-s
+    {prop} 10px
+  .sm-{prop}-m
+    {prop} 16px
+  .sm-{prop}-l
+    {prop} 24px
+  .sm-{prop}-xl
+    {prop} 32px
+
+
+// margin 辅助
+
+space-mixins(margin)
+space-mixins(margin-left)
+space-mixins(margin-right)
+space-mixins(margin-top)
+space-mixins(margin-bottom)
+
+space-mixins(padding)
+space-mixins(padding-left)
+space-mixins(padding-right)
+space-mixins(padding-top)
+space-mixins(padding-bottom)
+
+fontsize-mixins(type, size)
+  .sm-text-{type}
+    font-size size
+
+fontsize-mixins(xs, 12px)
+fontsize-mixins(s, 14px)
+fontsize-mixins(m, 16px)
+fontsize-mixins(l, 18px)
+fontsize-mixins(xl, 24px)
+fontsize-mixins(xxl, 32px)
+
+.sm-text-bold
+  font-weight bold
+.sm-text-bolder
+  font-weight bolder
+
+.sm-text-left
+  text-align left
+
+.sm-text-right
+  text-align right
+
+.sm-text-center
+  text-align center
+
+.sm-text-top
+  vertical-align: top
+
+.sm-text-middle
+  vertical-align: middle
+
+.sm-text-bottom
+  vertical-align: bottom
+
+.sm-text-nowrap
+  white-space nowrap
+
+.sm-text-wrap
+  word-wrap: break-word;
+  hyphens: auto;
+
+.sm-page
+  position absolute
+  width 100%
+  top 0
+  left 0
+  bottom 0
+  background #E8EAEf
+
+// respose media query
+
+/* Smartphones (portrait and landscape) ----------- */
+// @media only screen and (min-device-width : 320px)  and (max-device-width : 480px)

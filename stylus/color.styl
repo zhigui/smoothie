@@ -1,0 +1,136 @@
+CDEFAULT = #bdc3c7
+CTEA =CPRIMARY = #1abc9c
+CGREEN = CSUCCESS = #2ecc71
+CBLUE = CINFO = #3498db
+CYELLOW = CWARNING = #f1c40f 
+CRED = CERROR = CDANGER = #e74c3c
+CDARK = #34495e
+CGRAY = #95a5a6
+CDARKBLUE = #34495e
+
+CDTEA = #16a085
+CDGREEN = #27ae60
+CDBLUE = #2980b9
+CDYELLOW = #f39c12
+CDRED = #c0392b
+CDDARKBLUE = #2c3e50
+
+bg-mixins(selector)
+  {selector}.green
+    background-color CGREEN
+  {selector}.blue
+    background-color CBLUE
+  {selector}.yellow
+    background-color CYELLOW
+  {selector}.red
+    background-color CRED
+  {selector}.dark-blue
+    background-color CDARKBLUE
+border-mixins(selector)
+  {selector}.green
+    border-color CGREEN
+  {selector}.blue
+    border-color CBLUE
+  {selector}.yellow
+    border-color CYELLOW
+  {selector}.red
+    border-color CRED
+  {selector}.dark-blue
+    border-color CDARKBLUE
+  {selector}.white
+    border-color #fff 
+
+nav-mixins(selector)
+  {selector}.green .active
+    border-bottom 2px solid CGREEN
+  {selector}.blue .active
+    border-bottom 2px solid CBLUE
+  {selector}.yellow .active
+    border-bottom 2px solid CYELLOW
+  {selector}.red .active
+    border-bottom 2px solid CRED
+  {selector}.dark-blue .active
+    border-bottom 2px solid CDARKBLUE
+
+segmented-mixins(selector)
+  {selector}.green
+    .active
+      background-color CDGREEN
+    > * 
+      background-color CGREEN
+  {selector}.blue 
+    .active
+      background-color CDBLUE
+    > * 
+      background-color CBLUE
+  {selector}.yellow 
+    .active
+      background-color CDYELLOW
+    > * 
+      background-color CYELLOW
+  {selector}.red 
+    .active
+      background-color CDRED
+    > * 
+      background-color CRED
+  {selector}.dark-blue 
+    .active
+      background-color CDDARKBLUE
+    > * 
+      background-color CDARKBLUE
+
+checkbox-mixins(selector)
+  {selector}.green
+    &::before, label::after
+      border-color CGREEN
+  {selector}.blue 
+    &::before, label::after
+      border-color CBLUE
+  {selector}.yellow 
+    &::before, label::after
+      border-color CYELLOW
+  {selector}.red 
+    &::before, label::after
+      border-color CRED
+  {selector}.dark-blue 
+    &::before, label::after
+      border-color CDARKBLUE
+
+radio-mixins(selector)
+  {selector}.green
+    &::before
+      border-color CGREEN
+    label::after
+      background-color CGREEN
+  {selector}.blue 
+    &::before
+      border-color CBLUE
+    label::after
+      background-color CBLUE
+  {selector}.yellow 
+    &::before
+      border-color CYELLOW
+    label::after
+      background-color CYELLOW
+  {selector}.red 
+    &::before
+      border-color CRED
+    label::after
+      background-color CRED
+  {selector}.dark-blue 
+    &::before
+      border-color CDARKBLUE
+    label::after
+      background-color CDARKBLUE
+
+toggle-mixins(selector)
+  {selector}.green label span
+    background-color CGREEN
+  {selector}.blue label span
+    background-color CBLUE
+  {selector}.yellow label span
+    background-color CYELLOW
+  {selector}.red label span
+    background-color CRED
+  {selector}.dark-blue label span
+    background-color CDARKBLUE
