@@ -7,36 +7,71 @@ Layout
 
 .sm-flex
   for $i in 0...12
-    .col{$i}
+    & > *[quota=\"{$i}\"]
       flex $i
 
   for $i in 1...12
-    .order{$i}
+    & > *[order=\"{$i}\"]
       order $i
-
-  &.col
+  
+  &[orientation="vertical"]
     flex-direction column
     // box-orient vertical 
 
-  &.row
+  &[orientation="horizontal"]
     // box-orient horizontal
     flex-direction row
 
-  &.center
+  &[horizontal="left"]
+    // box-pack center
+    justify-content flex-start 
+
+  &[horizontal="center"]
     // box-pack center
     justify-content center
 
-  &.middle
-    // box-align center
-    align-items center
+  &[horizontal="right"]
+    // box-pack center
+    justify-content flex-end
 
-  &.justify
+  &[horizontal="justify"]
     // box-pack justify
     justify-content space-between
 
-  &.stretch
-    // box-align stretch
+  &[horizontal="distribute"]
+    // box-pack distribute
+    justify-content space-around
+
+    
+
+  //  align-items: flex-start | flex-end | center | baseline | stretch;
+  &[vertical="center"]
+    // box-align center
+    align-items center
+
+  &[vertical="top"]
+    align-items flex-start
+
+  &[vertical="bottom"]
+    align-items flex-end
+
+  &[vertical="stretch"]
     align-items stretch
+
+  &[vertical="baseline"]
+    align-items baseline
+
+  &[wrap="nowrap"]
+    flex-wrap nowrap
+
+  &[wrap="wrap"]
+    flex-wrap wrap
+
+  &[wrap="wrap-reverse"]
+    flex-wrap wrap-reverse
+
+
+
 .sm-page
   display flex
   flex-direction column
