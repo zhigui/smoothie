@@ -5,6 +5,7 @@
   height  44px
   box-shadow 0px 2px 2px rgba(0, 0, 0, 0.2)
   color #F1F1F1
+  position relative
 
   .title
     position absolute
@@ -20,11 +21,11 @@
     color #F1F1F1
     margin 0;
 
-  & > *
-    margin: 0px 8px;
-    height 44px
-    display inline-block
+
+  & > .btn
     line-height 44px
+    margin 0 8px
+    padding 0;
 
 bg-mixins(".sm-topbar")
    
@@ -115,17 +116,6 @@ border-mixins(".sm-loading")
 @keyframes rotation
    from {transform: rotate(0deg);}
    to {transform: rotate(359deg);}
-
-.sm-badge
-  display inline-block
-  padding 2px 9px 3px
-  font-size 12px
-  line-height 1
-  color #FFF
-  background-color CPRIMARY
-  border-radius 100px
-
-bg-mixins(".sm-badge")
 
 
 
