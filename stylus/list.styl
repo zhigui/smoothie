@@ -11,10 +11,10 @@
     color #778
     font-size 12px
 
-  .arrow
+  .chevrons
     padding-right 25px
 
-  .arrow::after
+  .chevrons::after
     position absolute
     content ''
     border-top solid 2px #969696
@@ -35,5 +35,17 @@
 
   li:last-child
     border-bottom none
+
+.sm-badge
+  display inline-block
+  padding 2px 9px 3px
+  font-size 12px
+  line-height 1
+  color #FFF
+  background-color CPRIMARY
+  border-radius 100px
+
+bg-mixins(".sm-badge")
+
 
 
