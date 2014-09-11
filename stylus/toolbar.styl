@@ -1,0 +1,125 @@
+@require 'color.styl'
+
+.sm-topbar
+  background-color #2c3e50
+  height  44px
+  box-shadow 0px 2px 2px rgba(0, 0, 0, 0.2)
+  color #F1F1F1
+  position relative
+
+  .title
+    position absolute
+    left 0
+    top 0
+    width 100%
+    line-height 44px
+    text-align center
+    white-space nowrap
+    word-wrap normal
+    text-overflow ellipsis
+    font-size 16px
+    color #F1F1F1
+    margin 0;
+
+
+  .sm-btn
+    line-height 44px
+    margin 0 8px
+    padding 0;
+    background-color transparent
+    border none
+    color #fff;
+
+bg-mixins(".sm-topbar")
+   
+
+.sm-nav
+  position relative
+  margin 0 auto
+  display flex
+  align-items center
+  height 40px
+  line-height 38px
+  box-shadow 0 1px 1px rgba(0, 0, 0, 0.2)
+  background-color #fff
+  a
+    color #333
+
+  & > * 
+    flex 1
+    text-align center
+    position relative
+    display block
+    &::after
+      content " "
+      display block
+      height 20px
+      border-right 1px solid CDEFAULT
+      position absolute
+      right 0
+      top 50%
+      margin-top -10px
+
+    &:last-child::after
+      display none
+
+  .active
+    border-bottom 2px solid CPRIMARY
+    
+nav-mixins(".sm-nav")
+    
+
+
+.sm-segmented
+  position relative
+  margin 0 auto
+  display flex
+  align-items center
+  height 44px
+  line-height 34px
+  padding 5px
+  .active
+    background-color #7f8c9a  
+
+.sm-segmented > * 
+  flex 1
+  text-align center
+  background-color #bdc3c7
+  color #fff
+  display block
+  // border-right 1px solid  #e4e7ea
+
+segmented-mixins(".sm-segmented")
+
+.sm-segmented > *:first-child
+  border-top-left-radius 3px
+  border-bottom-left-radius: 3px
+.sm-segmented > *:last-child
+  border-top-right-radius 3px;
+  border-bottom-right-radius 3px
+  border-right none
+
+.sm-loading
+  width 26px
+  height 26px
+  display inline-block
+  // background url(loading.gif)
+  border 2px solid CDEFAULT
+  border-left-color transparent!important
+  border-bottom-color transparent!important
+
+  border-radius 100%
+  animation: rotation 1s infinite linear;
+  &.small
+    width  13px
+    height 13px
+    background-size 13px auto
+
+border-mixins(".sm-loading")
+
+@keyframes rotation
+   from {transform: rotate(0deg);}
+   to {transform: rotate(359deg);}
+
+
+

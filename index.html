@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smoothie</title>
+  <link rel="stylesheet" type="text/css" href="dist/smoothie.css">
+  <link rel="stylesheet" type="text/css" href="docs/style.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <!-- table of contents -->
+    <a class="toc-title" href="get-stared">Get Started</a>
+    <ul class="toc-section">
+      <li><a href="#doctype">HTML5 doctype</a></li>
+      <li><a href="#viewport">Add the Viewport</a></li>
+      <li><a href="#usecss">Add Smoothie to your page</a></li>
+      <li><a href="#build">Build the css</a></li>
+    </ul>
+    <a class="toc-title" href="#typography">Typography</a>
+    <a class="toc-title" href="#layout">Layout</a>
+    <a class="toc-title" href="#forms">Forms</a>
+    <ul class="toc-section">
+      <li><a href="#text">Text input</a></li>
+      <li><a href="#text_size">Input with diffrent sizes</a></li>
+      <li><a href="#select">Select</a></li>
+      <li><a href="#checkbox">Checkbox</a></li>
+      <li><a href="#radio">Radio</a></li>
+      <li><a href="#toggle">Toggle</a></li>
+    </ul>
+    <a class="toc-title" href="#buttons">Buttons</a>
+    <ul class="toc-section">
+      <li><a href="#default_buttons">Default Buttons</a></li>
+      <li><a href="#disabled_buttons">Disabled Buttons</a></li>
+      <li><a href="#type_buttons">Diffrent Type Buttons</a></li>
+      <li><a href="#size_buttons">Button with diffrent sizes</a></li>
+      <li><a href="#block_button">Display button as block</a></li>
+    </ul>
+
+    <a class="toc-title" href="#list">List</a>
+    <ul class="toc-section">
+      <li><a href="#list_base">Base List</a></li>
+      <li><a href="#list_divider">List With Divider</a></li>
+      <li><a href="#list_chevrons">List With Chevrons</a></li>    
+      <li><a href="#list_badges">List With Badges</a></li>
+    </ul>
+
+    <a class="toc-title" href="#toolbars">Toolbars</a>
+    <a class="toc-title" href="#icons">Icons</a>
+
+  </aside>
+  <div id="container">
+    <h1>Smoothie</h1>
+    <h2 id="get-stared">Get Started</h2>
+    <h3 id="doctype">HTML5 doctype</h3>
+    <p>Smoothie require the use of the HTML5 doctype. So begining your projects with following format.</p>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <h3 id="viewport">Add the Viewport</h3>
+    <p>The Viewport meta lets you control your page's width and  scale  on the mobile browser. Add following code into your page's <code>head</code>. </p>
+<pre>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+</pre>
+    <h3 id="usecss">Add Smoothie to your page</h3>
+    <p>Just add the <code>smoothie.css</code> with the  <code>&lt;link&gt;</code> element into your page's head, before your project's stylesheets.</p>
+<pre>
+  &lt;link rel="stylesheet" href="smoothie.css"&gt;
+</pre>
+
+After the above step your base document will like this:
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+  &lt;title&gt;Document&lt;/title&gt;
+  <link rel="stylesheet" href="smoothie.css">
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    
+    <h4 id="build">Build the css</h4>
+      <p> You can directly use smoothie.css under the dist directory or build the new one by yourself.</p>
+      <p> Smoothie stylesheet built with stylus:</p>
+      <h4>1. Install gulp globally:</h4>
+      <pre>$ npm install --global gulp</pre>
+      <h4>2. Install the dependencies in the project root dir:</h4>
+      <pre>$ npm install</pre>
+      <h4>3. run the gulp to bulid stylus files to dist folder:</h4>
+      <pre>$ gulp</pre>
+
+    <h2 id="typography">Typography</h2>
+      <h3>Base</h3>
+      <p>By default smoothie set the :</p>
+      <pre>
+        html,
+        body {
+          -webkit-user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        a,
+        img {
+          -webkit-touch-callout: none;
+        }
+      </pre>
+      <p>To prevent ios text size adjuat and ios, android long press callout menu or select text</p>
+
+      <h3>Headings</h3>
+      <p>All HTML headings, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>, are available. <code>.h1</code> through <code>.h6</code> classes are also available, for when you want to match the font styling of a heading but still want your text to be displayed inline.</p>
+      <div class="demo">
+        <h1>h1. Heading</h1>
+        <h2>h2. Heading</h2>
+        <h3>h3. Heading</h3>
+        <h4>h4. Heading</h4>
+        <h5>h5. Heading</h5>
+        <h6>h6. Heading</h6>
+      </div>
+
+      <h3>Body</h3>
+      <p>smoothie's global default <code>font-size</code> is <strong>14px</strong>. all paragraphs Applied   the <code>&lt;p&gt;</code> <code>line-height</code> of <strong>1.4</strong> and <code>margin-bottom</code> <strong>10px</strong>.</p>
+
+    <h2 id="layout">Layout</h2>
+      <h3>可伸缩布局系统</h3>
+      <h4>简介</h4>
+      <p>Smoothie 使用弹性盒子模型进行页面的布局，通过水平、垂直的组合方式来创建页面布局
+
+      创建一个 可伸缩布局  只要在父容器中加入 一个 类 <code>sm-flex</code>, 添加该类后，该元素有以下属性可供设置:</p>
+
+      <p>orientical: </p>
+      <table>
+        <tr>
+          <th>属性</th>
+          <th>取值说明</th>
+        </tr>
+        <tr>
+          <td>orientation</td>
+          <td>定义该容器下的子元素的排列主轴方向方向，默认为水平方向。可以选择的值为 horizontal , vertical <br>
+            horizontal:水平方向（默认）<br>
+            vertical: 垂直方向
+          </td>
+        </tr>
+        <tr>
+          <td>horizontal</td>
+          <td>
+          设置子元素在水平方向的对齐方式， 可选的值有  left | right | center | justify | distribute <br>
+          left: 左对齐 （默认）<br>
+          right: 右对齐 <br>
+          center: 水平居中对齐 <br>
+          justify: 两端对齐 <br>
+          distribute：水平分散对齐 <br>
+          </td>
+        </tr>
+
+        <tr>
+          <td>vertical</td>
+          <td>
+          设置子元素在垂直方向的对齐方式，可选的值有 top | bottom | center | baseline | stretch<br>
+          top: 顶部对齐（默认）<br>
+          bottom: 底部对齐<br>
+          center: 垂直居中对齐<br>
+          baseline: 子元素基线对齐<br>
+          stretch: 垂直拉伸<br>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>wrap</td>
+          <td>
+          设置子元素在垂直方向的对齐方式，可选的值有 wrap, nowrap, wrap-reverse<br>
+          nowrap: 子元素不换行（默认）<br>
+          wrap: 根据需要，子元素换行<br>
+          wrap-reverse: 子元素换行从右侧开始<br>
+           
+
+          </td>
+        </tr>
+
+
+      </table>
+      <iframe src="docs/flex.html" style="width:100%; height:600px;" frameborder="0"></iframe>
+      <pre>
+        &lt;div class="sm-flex" style="background: green; height:100px"&gt;
+          &lt;div style="background-color: red"&gt;1&lt;/div&gt;
+          &lt;div style="background-color: orange"&gt;2&lt;/div&gt;
+          &lt;div style="background-color: yellow"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+      </pre>
+      <div class="sm-flex" style="background: green; height:100px">
+        <div style="background-color: red; height: 50px; width:50px;">1</div>
+        <div style="background-color: orange; height: 50px; width:50px;">2</div>
+        <div style="background-color: yellow; height: 50px; width:50px;">3</div>
+      </div>
+
+      <p>默认情况下，子元素为横向排列， 通过向父容器添加 类 <code>col</code>  来设置子元素为纵向排列:</p>
+      <pre>
+        &lt;div class="sm-flex col" style="background: green; height:100px"&gt;
+          &lt;div style="background-color: red"&gt;1&lt;/div&gt;
+          &lt;div style="background-color: orange"&gt;2&lt;/div&gt;
+          &lt;div style="background-color: yellow"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+      </pre>
+      <div class="sm-flex col" style="background: green; height:100px">
+        <div style="background-color: red">1</div>
+        <div style="background-color: orange">2</div>
+        <div style="background-color: yellow">3</div>
+      </div>
+
+
+      <p>通过向父容器添加 类 <code>center</code>  来设置子元素 在排列方向 上居中:</p>
+      <pre>
+        &lt;div class="sm-flex center" style="background: green; height:100px"&gt;
+          &lt;div style="background-color: red"&gt;1&lt;/div&gt;
+          &lt;div style="background-color: orange"&gt;2&lt;/div&gt;
+          &lt;div style="background-color: yellow"&gt;3&lt;/div&gt;
+        &lt;/div&gt;
+      </pre>
+      <div class="sm-flex center" style="background: green; height:100px">
+        <div style="background-color: red">1</div>
+        <div style="background-color: orange">2</div>
+        <div style="background-color: yellow">3</div>
+      </div>
+    <h2 id="forms">Forms</h2>
+      <h3 id="text">Text input</h3>
+        <p>To use the form controls just add the <code>sm-input</code> classname to the input element.</p>
+        <pre><input type="text" class="sm-input" placeholder="Name" ></pre>
+        <input type="text" class="sm-input" placeholder="Name" >
+        
+        <p>when the input is error or warning just add the <code>error</code> or <code>warning</code> to the class name:</p>
+<pre>
+<input type="text" class="sm-input error" placeholder="when error" >
+<input type="text" class="sm-input warning" placeholder="when warning" >
+</pre>
+        <div class="example">
+          <input type="text" class="sm-input error" placeholder="when error" >
+          <br>
+          <input type="text" class="sm-input warning" placeholder="when warning" >
+        </div>
+        <p>The disabled status of input. Just add the attribute <code>disabled</code> to the input</p>
+        <pre><input type="text" class="sm-input" disabled  placeholder="disabled" ></pre>
+        <input type="text" class="sm-input" disabled  placeholder="disabled" >
+      <h3 id="text_size">Input with diffrent sizes</h3>
+      <p>Add the <code>small</code> <code>large</code> classname to the <code>sm-input</code>  element.</p>
+<pre>
+  <input type="text" class="sm-input small" placeholder="when error" >
+  <input type="text" class="sm-input large" placeholder="when warning" >
+</pre>
+      <input type="text" class="sm-input small" placeholder="small" >
+      <br>
+      <input type="text" class="sm-input" placeholder="default" >
+      <br>
+      <input type="text" class="sm-input large" placeholder="large" >
+
+      <h3 id="select">Select</h3>
+        <p>Add the class <code>sm-select</code> to the <code>select</code>'s <strong>parent</strong> element.</p>
+<pre>
+  <div class="sm-select">
+    <select class="sm-input">
+      <option>test value1</option>
+      <option>test value1</option>
+      <option>test value1</option>
+    </select>
+  </div>
+</pre>
+        <div class="sm-select">
+          <select class="sm-input">
+            <option>test value1</option>
+            <option>test value1</option>
+            <option>test value1</option>
+          </select>
+        </div>
+
+      <h3 id="checkbox">Checkbox</h3>
+        <p>Add the class <code>sm-check</code> to the <code>checkbox</code>'s <strong>parent</strong> element.</p>
+<pre>
+<div class="sm-check">
+    <input  type="checkbox"  id="cb1"> <label for="cb1"> Apple </label>
+</div>  
+</pre>
+        <div class="sm-check">
+            <input  type="checkbox"  id="cb1"> <label for="cb1"> Apple </label>
+        </div>
+
+        <div class="sm-check">
+            <input  type="checkbox"   id="cb2"> <label for="cb2"> Banana </label>
+        </div>
+      <h3 id="radio">Radio</h3>
+        <p>Add the class <code>sm-radio</code> to the <code>checkbox</code>'s <strong>parent</strong> element.</p>
+<pre>
+  <div class="sm-radio">
+      <input  type="radio" name="rd1"  id="rd1"> <label for="rd1"> Banana </label>
+  </div>
+</pre>
+        <div class="sm-radio">
+            <input  type="radio" name="rd1"  id="rd1"> <label for="rd1"> Banana </label>
+        </div>
+        <div class="sm-radio">
+            <input  type="radio" name="rd1"  id="rd2"> <label for="rd2"> Orange </label>
+        </div>
+
+      <h3 id="toggle">Toggle</h3>
+        <p>The toggle element is similar with checkbox. But have a special appearance. You should use the following fomat and add the <code>sm-toggle</code> classname. To use this control and get the vaule same as the checkbox.</p>
+<pre>
+<div class="sm-toggle sm-ib">
+  <input  type="checkbox"   id="tg1">
+  <label for="tg1"><span>ON</span> OFF </label>
+</div>
+</pre>
+      <div class="sm-toggle sm-ib">
+        <input  type="checkbox"   id="tg1">
+        <label for="tg1"><span>ON</span> OFF </label>
+      </div>
+      <h2 id="buttons">Buttons</h2>
+        <h3 id="default_buttons">Default Buttons</h3>
+        <p>To create a button, add the <code>sm-btn</code> classname to any <code>div</code>, <code>a</code> or <code>button</code> element.</p>
+<pre>
+  <div class="sm-btn">Default Button</div>
+  <a  href="#" class="sm-btn">Default</a>
+  <button class="sm-btn">BUTTON</button>
+</pre>
+        <div class="example">
+          <div class="sm-btn">Default Button</div>
+          <a  href="#" class="sm-btn">Default</a>
+          <button class="sm-btn">button</button>
+        </div>
+
+        <h3 id="disabled_buttons">Disabled Buttons</h3>
+          <p>To mark a button as disabled, add the  <code>disabled</code> <strong>attribute</strong> to the button element.</p>
+<pre>
+  <button class="sm-btn" disabled >BUTTON</button>
+</pre>
+<div>
+  <button class="sm-btn" disabled >BUTTON</button>
+  <div class="sm-btn" disabled >Deault disabled</div>
+  <div class="sm-btn danger" disabled >Danger disabled</div>
+
+</div>
+        <h3 id="type_buttons">Diffrent Type Buttons</h3>
+        <p>Add the <code>primary</code>  <code>info</code> <code>success</code> <code>danger</code> classname to the <code>sm-btn</code> elemet to apply. </p>
+<pre>
+  <a  href="#" class="sm-btn primary">Primary</a>
+  <div class="sm-btn info" >Info</div>
+  <div class="sm-btn success" >Success</div>
+  <div class="sm-btn warning" >Warning</div>
+  <div class="sm-btn danger" >Danger</div>
+</pre>
+      <div>
+        <a  href="#" class="sm-btn primary">Primary</a>
+        <div class="sm-btn info" >Info</div>
+        <div class="sm-btn success" >Success</div>
+        <div class="sm-btn warning" >Warning</div>
+        <div class="sm-btn danger" >Danger</div>
+      </div>
+        <h3 id="size_buttons">Button with diffrent sizes</h3>
+        <p>Add the <code>small</code> <code>middle</code> <code>large</code> classname to the <code>sm-btn</code> elements.</p>
+<pre>
+  <div class="sm-btn success small" >small</div>
+  <div class="sm-btn warning middle" >middle</div>
+  <div class="sm-btn info" >Default</div>
+  <div class="sm-btn primary large">Primary</div>
+</pre>
+        <div class="sm-btn success small" >small</div>
+        <div class="sm-btn warning middle" >middle</div>
+        <div class="sm-btn info" >Default</div>
+        <div class="sm-btn primary large">Primary</div>
+
+        <h3 id="block_button">Display button as block</h3>
+        <p>Add the <code>block</code> classname to the <code>sm-btn</code> elements.</p>
+<pre>
+  <div class="sm-btn primary block">Primary</div>
+</pre>
+        <div class="sm-btn primary block">Primary</div>
+
+      <h2>List</h2>
+      <h3 id="list_base">Base List</h3>
+      <p>add the <code>sm-list</code> classname to the <code>ul</code> element.</p>
+<pre>
+  <ul class="sm-list">
+    <li>item1</li>
+    <li>item2</li>
+  </ul>
+</pre>
+      <div>
+        <ul class="sm-list">
+          <li>item1</li>
+          <li>item2</li>
+        </ul>
+      </div>
+      <h3 id="list_divider">List With Divider</h3>
+      <p>Add the <code>divider</code> classname to the list <code>li</code> elements</p>
+<pre>
+  <ul class="sm-list">
+    <li class="divider">divider</li>
+    <li>item1</li>
+    <li>item2</li>
+  </ul>
+</pre>
+      <div>
+        <ul class="sm-list">
+          <li class="divider">divider</li>
+          <li>item1</li>
+          <li>item2</li>
+        </ul>
+      </div>
+
+      <h3 id="list_chevrons">List With Chevrons</h3>
+      <p>Add the <code>chevrons</code> classname to the list <code>li</code> elements</p>
+<pre>
+  <ul class="sm-list chevrons">
+    <li class="chevrons">chevrons item</li>
+    <li class="chevrons">item1</li>
+  </ul>
+</pre>
+      <div>
+        <ul class="sm-list chevrons">
+          <li class="chevrons">chevrons item</li>
+          <li class="chevrons">item1</li>
+        </ul>
+      </div>
+
+      <h3 id="list_badges">List With Badges</h3>
+      <p>Add the <code>sm-badge</code> classname to the inline-block elements.</p>
+<pre>
+  <ul class="sm-list chevrons">
+    <li>new today <span class="sm-badge sm-right">6</span></li>
+    <li>item1</li>
+  </ul>
+</pre>
+      <div>
+        <ul class="sm-list chevrons">
+          <li>News today <span class="sm-badge sm-right">6</span></li>
+          <li>item1</li>
+        </ul>
+      </div>
+
+      <h2>Toolbars</h2>
+      <h3>Topbar</h3>
+      <p>Add the <code>.sm-topbar</code> classname name to the div element and add the <code>title</code> classname to the inner div.</p>
+<pre>
+  <div class="sm-topbar">
+    <div class="title">Title</div>
+  </div>
+</pre>
+      <div class="sm-topbar">
+        <div class="title">Title</div>
+      </div>
+
+    <h3>Topbar with button</h3>
+      <p>Add the <code>.sm-topbar</code> classname name to the div element and add the <code>title</code> classname to the inner div.</p>
+<pre>
+  <div class="sm-topbar">
+    <div class="title">Title</div>
+    <a href="#" >Link</a>
+  </div>
+</pre>
+      <div class="sm-topbar">
+        <div class="title">Title</div>
+        <a href="">Back</a>
+        <div class="sm-btn danger sm-right ">Setting</div>
+      </div>
+
+      <h3>Nav</h3>
+      <div class="sm-nav primary">
+        <a href="#" class="active">Message</a>
+        <a href="#">Call</a>
+        <a href="#">inbox</a>
+      </div>
+      
+      <h3>Segmented</h3>
+      <div class="sm-segmented">
+        <a href="#" class="active">Message</a>
+        <a href="#">Call</a>
+        <a href="#">inbox</a>
+      </div>
+     </div>
+
+  <script>
+      function encodeHTML(text){
+      return String(text).replace(/["<>]/g, function(all){
+        return "&" + {
+          '"': 'quot',
+          '<': 'lt',
+          '>': 'gt'
+          // '&': 'amp',
+          // ' ': 'nbsp'
+          }[all] + ";";
+        });
+      }
+      var blocks = document.querySelectorAll("pre, code");
+      for(var i=0; i<blocks.length; i++){
+        block=blocks[i];
+        block.innerHTML=encodeHTML(block.innerHTML);
+      }
+  </script>
+</body>
+</html>

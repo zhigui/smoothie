@@ -1,0 +1,15 @@
+{
+  "name": "Somoothie",
+  "description": "smoothie builder",
+  "version": "0.1.0",
+  "main": "gulpfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-stylus": "*",
+    "gulp-rename": "*",
+    "nib": "*"
+  }
+}
