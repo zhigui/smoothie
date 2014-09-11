@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex</title>
+  <link rel="stylesheet" type="text/css" href="../dist/smoothie.css">
+  <style type="text/css">
+    body{
+      padding: 20px;
+    }
+    #main{
+      background: gold;
+      height: 300px;
+    }
+    .box1, .box2, .box3{
+      padding: 20px
+    }
+    .box1 {
+    background: tomato;
+    }
+
+    .box2 {
+      background: lightgreen;
+    }
+
+    .box3 {
+      text-align: left;
+      background: deepskyblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" class="sm-flex">
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+  </div>
+  <div>
+    <p><input type="checkbox" value="sm-flex" onchange="toggleClass(this, 'sm-flex')" checked > .sm-flex 父容器应用 弹性布局 </p>
+    父容器属性设置
+    
+    <p>
+      orientation :
+      <input type="radio" name="orientation" value="horizontal" onchange="toggleAttr(this, 'orientation')" > horizontal 
+      <input type="radio" name="orientation" value="vertical" onchange="toggleAttr(this, 'orientation')" > vertical 
+    </p>
+
+    <p>
+      horizontal :
+      <input type="radio" name="horizontal" value="left" onchange="toggleAttr(this, 'horizontal')" > left 
+      <input type="radio" name="horizontal" value="right" onchange="toggleAttr(this, 'horizontal')" > right 
+      <input type="radio" name="horizontal" value="center" onchange="toggleAttr(this, 'horizontal')" >center
+      <input type="radio" name="horizontal" value="justify" onchange="toggleAttr(this, 'horizontal')" > justify 
+      <input type="radio" name="horizontal" value="distribute" onchange="toggleAttr(this, 'horizontal')" > distribute 
+    </p>
+
+    <p>
+      vertical :
+      <input type="radio" name="vertical" value="top" onchange="toggleAttr(this, 'vertical')" > top 
+      <input type="radio" name="vertical" value="bottom" onchange="toggleAttr(this, 'vertical')" > bottom 
+      <input type="radio" name="vertical" value="center" onchange="toggleAttr(this, 'vertical')" >center
+      <input type="radio" name="vertical" value="baseline" onchange="toggleAttr(this, 'vertical')" > baseline 
+      <input type="radio" name="vertical" value="stretch" onchange="toggleAttr(this, 'vertical')" > stretch 
+    </p>
+
+     <p>
+      wrap :
+      <input type="radio" name="wrap" value="nowrap" onchange="toggleAttr(this, 'wrap')" > nowrap 
+      <input type="radio" name="wrap" value="wrap" onchange="toggleAttr(this, 'wrap')" > wrap 
+      <input type="radio" name="wrap" value="wrap-reverse" onchange="toggleAttr(this, 'wrap')" >wrap-reverse
+    </p>
+    
+  </div>
+  <script type="text/javascript">
+    var container=document.getElementById("main");
+    function toggleClass(that, classname){
+      if(!that.checked){
+        container.className=" ";
+      }else{
+        container.className=classname;
+      }
+    }
+    function toggleAttr(that, name){
+      if(!that.checked){
+        container.setAttribute(name, "");
+      }else{
+        container.setAttribute(name, that.value);
+      }
+    }
+  </script>
+</body>
+</html>
