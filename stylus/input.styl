@@ -1,20 +1,51 @@
 @require 'color.styl'
 
 border-color = #e1e1e1
-.sm-input
-  appearance none
-  border-radius 0
-  display block
-  padding 10px 12px
-  width 100%
-  background-color #fff
-  border none
-  outline none
-  height 40px
-  font-size 16px
-  line-height 18px
-  // margin 10px 0
-  border-radius 2px
+.sm-input, .sm-select
+  @extend .sm-flex
+  border 1px solid border-color
+  align-items center
+  margin -1px
+  .input-label
+    display block
+    padding 0 0  0 10px;
+    width 100px
+
+.sm-input   
+  input
+    flex 1
+    appearance none
+    border-radius 0
+    display block
+    padding 10px 12px
+    margin 0
+    background-color #fff
+    border none
+    outline none
+    height 40px
+    font-size 16px
+    line-height 18px
+    // margin 10px 0
+     
+
+
+    &[type="text"]
+      // &:focus
+      //   box-shadow inset 0 0 3px CPRIMARY
+    &[readonly]
+      background-color #eee
+
+    textarea&
+      border 1px solid border-color
+      min-height 90px
+
+  &.success
+    border-left 2px solid CSUCCESS
+  &.error
+    border-left 2px solid CDANGER
+  &.warning
+    border-left 2px solid CWARNING
+
   &.space
     margin 10px 0
   &.small
@@ -24,24 +55,7 @@ border-color = #e1e1e1
     font-size 18px
     height 46px
 
-  &[type="text"]
-    border 1px solid border-color
-    &:focus
-      border-color CPRIMARY
-      box-shadow 0 0 3px CPRIMARY
-  &[readonly]
-    background-color #eee
 
-  textarea&
-    border 1px solid border-color
-    min-height 90px
-
-  &.success
-    border-color CSUCCESS
-  &.error
-    border-color CDANGER
-  &.warning
-    border-color CWARNING
   
   &[disabled]
     opacity 0.5
@@ -73,9 +87,68 @@ fieldset[disabled] .sm-input
     border-right 10px solid transparent
     margin-top  -5px
   & select, & .select
-    @extend .sm-input
-    border 1px solid border-color
+    @extend .sm-input input
     padding-right 35px
+.sm-check1, sm-radio1
+  display block
+  line-height 28px
+  padding 10px 0
+  input
+    position relative
+    appearance none
+    background-color transparent
+    outline none
+    width 30px
+    &::before
+      content " "
+      display block
+      width 26px
+      height 26px
+      border 1px solid CPRIMARY
+      position absolute
+      left 0
+      top 50%
+      margin-top -14px
+      border-radius 100%
+      transition: background-color 200ms ease-in-out;
+    &[type="checkbox"]::after
+      content " "
+      height 14px
+      width 7px
+      border-right  2px solid #FFF
+      border-bottom  2px solid  #FFF
+      display none
+      position absolute
+      left 10px
+      top 50%
+      margin-top -10px
+      transform rotate(45deg)
+      pointer-events none
+    &[type="checkbox"]:checked::before{
+      background-color CPRIMARY
+    }
+
+    &[type="radio"]::after{
+      content " "
+      display block
+      position absolute
+      width 16px
+      height 16px
+      border-radius 100%
+      background-color CPRIMARY
+      left 50%
+      top 50%
+      margin-top -8px
+      margin-left -9px
+      transform scale(0)
+      transition: transform 200ms ease-in-out;
+    }
+    &[type="radio"]:checked::after{
+      transform scale(1)
+    }
+
+    &:checked::after
+      display block
 
 .sm-check
   position relative
@@ -170,6 +243,41 @@ checkbox-mixins(".sm-check")
   input[type="radio"]:checked + label::after
     display: block
 radio-mixins(".sm-radio")
+
+.sm-toggle1
+  position relative
+  input
+    appearance none
+    background-color transparent
+    position relative
+    outline none
+  input::before
+    content " "
+    display block
+    width 50px
+    height 28px
+    border-radius 14px
+    background-color CDEFAULT
+    transition background-color 0.2s ease-in-out;
+
+  input::after
+    content " "
+    display block
+    position absolute
+    left 2px
+    top 2px
+    width 24px
+    height 24px
+    border-radius 100%
+    background-color #fff
+    transition: left 0.2s ease-in-out;
+  input:checked::before
+    background-color CPRIMARY
+  input:checked::after
+    left 24px
+
+
+
 
 .sm-toggle
   position relative
