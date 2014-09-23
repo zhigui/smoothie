@@ -16,7 +16,7 @@
   font-size 100%
   line-height normal
   border-radius 2px
-  padding 10px 20px
+  padding 8px 16px
   &.space 
     margin-top 8px
   &.small
@@ -34,25 +34,55 @@
     color #666
   &.block
     display block
-  &.primary
-    border none
+  &.primary, &.success, &.info, &.danger, &.warning
+    border transparent
     color #fff
+  &.outline
+    border 1px solid #CFCFCF
+    background-color transparent!important
+    &.primary, 
+      border-color CPRIMARY
+      color CPRIMARY
+    &.success, &.green
+      border-color CSUCCESS
+      color CSUCCESS
+    &.info, &.blue
+      border-color CINFO
+      color CINFO
+    &.danger, &.red
+      border-color CDANGER
+      color CDANGER
+    &.warning, &.yellow
+      border-color CWARNING
+      color CWARNING
+    &.dark-blue
+      border-color CDARKBLUE
+      color CDARKBLUE
+  &.clear
+    border-color transparent
+    background-color transparent!important
+    &.primary
+      color CPRIMARY
+    &.success, &.green
+      color CSUCCESS
+    &.info, &.blue
+      color CINFO
+    &.danger, &.red
+      color CDANGER
+    &.warning, &.yellow
+      color CWARNING
+    &.dark-blue
+      color CDARKBLUE
+
+  &.primary
     background-color CPRIMARY
   &.success
-    border none
-    color #fff
     background-color CSUCCESS
   &.info
-    border none
-    color #fff
     background-color CINFO
   &.danger
-    border none
-    color #fff
     background-color CDANGER
   &.warning
-    border none
-    color #fff
     background-color CWARNING
   &[disabled]
     opacity 0.5
