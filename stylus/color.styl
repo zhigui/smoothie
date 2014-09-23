@@ -79,58 +79,29 @@ segmented-mixins(selector)
     > * 
       background-color CDARKBLUE
 
-checkbox-mixins(selector)
+choosebox-mixins(selector)
   {selector}.green
-    &::before, label::after
-      border-color CGREEN
-  {selector}.blue 
-    &::before, label::after
-      border-color CBLUE
-  {selector}.yellow 
-    &::before, label::after
-      border-color CYELLOW
-  {selector}.red 
-    &::before, label::after
-      border-color CRED
-  {selector}.dark-blue 
-    &::before, label::after
-      border-color CDARKBLUE
-
-radio-mixins(selector)
-  {selector}.green
-    &::before
-      border-color CGREEN
-    label::after
+    input::before
+      border-color  CGREEN
+    input:checked::before
       background-color CGREEN
   {selector}.blue 
-    &::before
-      border-color CBLUE
-    label::after
+    input::before
+      border-color  CBLUE
+    input:checked::before
       background-color CBLUE
   {selector}.yellow 
-    &::before
-      border-color CYELLOW
-    label::after
+    input::before
+      border-color  CYELLOW
+    input:checked::before
       background-color CYELLOW
   {selector}.red 
-    &::before
-      border-color CRED
-    label::after
+    input::before
+      border-color  CRED
+    input:checked::before
       background-color CRED
   {selector}.dark-blue 
-    &::before
-      border-color CDARKBLUE
-    label::after
+    input::before
+      border-color  CDARKBLUE
+    input:checked::before
       background-color CDARKBLUE
-
-toggle-mixins(selector)
-  {selector}.green label span
-    background-color CGREEN
-  {selector}.blue label span
-    background-color CBLUE
-  {selector}.yellow label span
-    background-color CYELLOW
-  {selector}.red label span
-    background-color CRED
-  {selector}.dark-blue label span
-    background-color CDARKBLUE
