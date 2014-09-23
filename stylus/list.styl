@@ -1,14 +1,10 @@
 .sm-list
   list-style none
   padding 0
-  margin 0
   .label, .divider
-    height: 28px;
-    line-height 28px
-    background-color: #D5E5E6;
-    padding 0
-    padding-left 12px
-    color #778
+    background-color #F5F5F5
+    padding 5px 12px
+    color #222
     font-size 12px
 
   .chevrons
@@ -26,15 +22,19 @@
     margin-top -4px
     transform rotate(45deg)
 
-  li
+  li, .item
     position relative
-    border-bottom: 1px solid rgba(0,0,0,0.05)
-    padding 10px 10px 10px 20px
+    border-top: 1px solid #ddd
+    border-bottom: 1px solid #ddd
+    padding 15px 15px 15px 15px
     color #444
     background-color #fff
+    margin -1px 0 -1px 0
 
-  li:last-child
-    border-bottom none
+  li:last-child, .sm-item:last-child
+    // border-bottom none
+  .item-choose
+    padding 5px
 
 .sm-badge
   display inline-block
