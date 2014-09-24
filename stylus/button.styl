@@ -7,16 +7,19 @@
   text-align center
   text-overflow ellipsis
   white-space nowrap
-  background-color #fff
-  color #666
+  // background-color #fff
+  // color #666
+  background-color CPRIMARY
+  border 1px solid transparent
+  color #fff
   text-decoration none
   outline none
   appearance none
-  border 1px solid #CFCFCF
+  
   font-size 100%
   line-height normal
   border-radius 2px
-  padding 8px 16px
+  padding 10px 16px
   &.space 
     margin-top 8px
   &.small
@@ -33,16 +36,18 @@
     border 1px solid CGRAY
     color #666
   &.block
+    width 100%
     display block
-  &.primary, &.success, &.info, &.danger, &.warning
+  &.success, &.info, &.danger, &.warning
     border transparent
-    color #fff
+    
   &.outline
-    border 1px solid #CFCFCF
+    color CPRIMARY
+    border 1px solid CPRIMARY
     background-color transparent!important
-    &.primary, 
-      border-color CPRIMARY
-      color CPRIMARY
+    &.blank
+      border-color #666
+
     &.success, &.green
       border-color CSUCCESS
       color CSUCCESS
@@ -58,11 +63,11 @@
     &.dark-blue
       border-color CDARKBLUE
       color CDARKBLUE
+
   &.clear
+    color CPRIMARY
     border-color transparent
     background-color transparent!important
-    &.primary
-      color CPRIMARY
     &.success, &.green
       color CSUCCESS
     &.info, &.blue
@@ -73,9 +78,8 @@
       color CWARNING
     &.dark-blue
       color CDARKBLUE
-
-  &.primary
-    background-color CPRIMARY
+  &.blank
+    color #666
   &.success
     background-color CSUCCESS
   &.info
