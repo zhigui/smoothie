@@ -17,10 +17,9 @@
     white-space nowrap
     word-wrap normal
     text-overflow ellipsis
-    font-size 1.6rem
+    font-size 16px
     color #F1F1F1
     margin 0;
-    pointer-events none
 
   .sm-btn
     line-height 44px
@@ -33,7 +32,7 @@
 bg-mixins(".sm-topbar")
    
 
-.sm-nav, .sm-menu
+.sm-nav
   position relative
   margin 0 auto
   display flex
@@ -68,9 +67,7 @@ bg-mixins(".sm-topbar")
     border-bottom 2px solid CPRIMARY
     
 nav-mixins(".sm-nav")
-
-.sm-menu
-  box-shadow none 
+    
 
 
 .sm-segmented
@@ -123,87 +120,6 @@ border-mixins(".sm-loading")
 @keyframes rotation
    from {transform: rotate(0deg);}
    to {transform: rotate(359deg);}
-
-.sm-loading-bar
-  overflow-x hidden
-  position absolute
-  top 0
-  left 0
-  width 100%
-  min-height 46px
-  color #fff
-  pointer-events none
-
-  .tip
-    position absolute
-    width 100%
-    text-align center
-    margin 0 auto
-    line-height 40px
-    height 44px
-    top -50%
-    left 50%
-    margin-left -50%
-    background-color transparent
-    transition all 300ms;
-    margin-top -22px
-    .point
-      width 30%
-      height 4px
-      background-color CBLUE
-      margin 0 auto 0 auto
-
-
-    
-  .line
-    
-    position absolute
-    bottom 0
-    width 200%
-    left -100%
-    justify-content space-between
-    animation: linemove 2s infinite linear
-    display none
-    & > i
-      display block;
-      width 16%
-      height 3px
-    & > i:nth-child(1)
-      background CRED
-    & > i:nth-child(2)
-      background CPRIMARY
-    & > i:nth-child(3)
-      background CYELLOW
-    & > i:nth-child(4)
-      background CRED
-    & > i:nth-child(5)
-      background CPRIMARY
-    & > i:nth-child(6)
-      background CYELLOW
-
-  &.waiting .line
-    display flex
-  &.waiting .mark
-    display none;
-  &.waiting .tip
-    transition-delay 1000ms
-  &.pulldown .tip
-    background-color rgba(0, 0, 0, 0.5)
-    top 50%
-
-
-    
-
-@keyframes linemove
-  0%
-    left -100%
-  50%
-    left -50%
-  99.9%
-    left 0
-  100%
-    left -100%
-
 
 
 
