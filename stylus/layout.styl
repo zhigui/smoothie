@@ -5,93 +5,86 @@ Layout
 .sm-flex
   display flex
 
+.sm-flex
+  for $i in 0...12
+    & > *[quota=\"{$i}\"]
+      flex $i
 
-for $i in 0...12
-  $j='"'+$i+'"'
-  .sm-flex > *[quota=\"{$j}\"]
-    flex $i
-
-for $i in 1...12
-  $j='"'+$i+'"'
-  .sm-flex > *[order=\"{$j}\"]
-    order $i
+  for $i in 1...12
+    & > *[order=\"{$i}\"]
+      order $i
   
-.sm-flex[orientation="vertical"]
+  &[orientation="vertical"]
     flex-direction column
     // box-orient vertical 
 
-.sm-flex[orientation="horizontal"]
+  &[orientation="horizontal"]
     // box-orient horizontal
     flex-direction row
 
-.sm-flex[horizontal="left"]
+  &[horizontal="left"]
     // box-pack center
     justify-content flex-start 
 
-.sm-flex[horizontal="center"]
+  &[horizontal="center"]
     // box-pack center
     justify-content center
 
-.sm-flex[horizontal="right"]
+  &[horizontal="right"]
     // box-pack center
     justify-content flex-end
 
-.sm-flex[horizontal="justify"]
+  &[horizontal="justify"]
     // box-pack justify
     justify-content space-between
 
-.sm-flex[horizontal="distribute"]
+  &[horizontal="distribute"]
     // box-pack distribute
     justify-content space-around
 
     
 
   //  align-items: flex-start | flex-end | center | baseline | stretch;
-.sm-flex[vertical="center"]
+  &[vertical="center"]
     // box-align center
     align-items center
 
-.sm-flex[vertical="top"]
+  &[vertical="top"]
     align-items flex-start
 
-.sm-flex[vertical="bottom"]
+  &[vertical="bottom"]
     align-items flex-end
 
-.sm-flex[vertical="stretch"]
+  &[vertical="stretch"]
     align-items stretch
 
-.sm-flex[vertical="baseline"]
+  &[vertical="baseline"]
     align-items baseline
 
-.sm-flex[wrap="nowrap"]
+  &[wrap="nowrap"]
     flex-wrap nowrap
 
-.sm-flex[wrap="wrap"]
+  &[wrap="wrap"]
     flex-wrap wrap
 
-.sm-flex[wrap="wrap-reverse"]
+  &[wrap="wrap-reverse"]
     flex-wrap wrap-reverse
 
 
 
 .sm-page
+  display flex
+  flex-direction column
   position absolute
   left 0
   top 0
   width 100%
   height 100%
-  overflow-y auto;
-  -ms-overflow-style -ms-autohiding-scrollbar
-  -webkit-overflow-scrolling: touch
+
 
 .sm-content
   flex 1
-.sm-full
-  position absolute
-  left 0
-  top 0
-  right 0
-  bottom 0;
+
 .sm-area
   margin 8px
   border-radius 2px
@@ -102,7 +95,7 @@ for $i in 1...12
     padding 8px
 
 .sm-area-title
-  font-size 1.6rem
+  font-size 16px
   font-weight bold
   margin-left 5px
  
