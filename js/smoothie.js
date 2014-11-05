@@ -54,7 +54,7 @@ var Smoothie = (function (argument) {
       var sm = {
         init:init,
         closePage:closePage,
-        close:close,
+        show:show,
         addPage:addPage,
         getPage:getPage
       };
