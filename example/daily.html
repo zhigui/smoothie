@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>知乎日报</title>
+  <meta name="apple-touch-fullscreen" content="yes"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+  <link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(57px).png" />
+  <link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(72px).png" sizes="72x72" />
+  <link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(76px).png" sizes="76x76" />
+  <link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(114px).png" sizes="114x114" />
+  <link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(120px).png" sizes="120x120" />
+  <link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(152px).png" sizes="152x152" />
+  <meta name="browsermode" content="application"/>
+  <link rel="stylesheet" type="text/css" href="../dist/smoothie.css">
+  <link rel="stylesheet" type="text/css" href="../fonts/fonts.css">
+  <link rel="stylesheet" type="text/css" href="http://news.at.zhihu.com/css/news_qa.auto.css">
+  <style>
+    .sm-page{
+      background-color: #fff;
+    }
+    #detail-view{
+      background-color: #fff;
+    }
+    .headline{
+      display: none;
+    }
+
+    .sm-enter-scale {
+        -webkit-animation: fadein .5s;
+    }
+    .sm-leave-scale {
+        /*-webkit-animation: fadeout .5s;*/
+    }
+
+    .sm-enter-scale-back {
+        /*-webkit-animation: myAnimation1 .5s;*/
+    }
+    .sm-leave-scale-back {
+        -webkit-animation: fadeout .5s;
+    }
+
+    @-webkit-keyframes myAnimation1 { 
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @-webkit-keyframes myAnimation2 { 
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    @-webkit-keyframes fadein {
+        0% {
+            
+            transform: scale(0);
+            opacity: 0;
+        }
+ 
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+  
+    @-webkit-keyframes fadeout {
+      0% {
+          transform: scale(1);
+          opacity: 1;  
+      }
+ 
+      100% {
+          transform: scale(0);
+          opacity: 0;
+      }
+    }
+ 
+  </style>
+</head>
+<body>
+  <div class="sm-page" data-page="home" >
+    <div class="sm-topbar blue">
+
+      <div class="title">知乎日报</div>
+    </div>
+    <div class="sm-content">
+      <div class="sm-list">        
+        <a class="item  item-img-left" v-repeat="list.stories||[]"   href="#news/{{id}}" >
+          <img    v-attr="src:'../fetch?url='+images" >
+          <h2>{{title}}</h2> 
+        </a>
+      </div>
+      <div v-if="loading">
+        <div class="sm-text-center sm-padding-m"><span class="sm-loading"></span></div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="sm-page" id="detail-view" data-page="detail">
+    <div class="sm-topbar"><!--javascript:window.history.back()-->
+      <a href="#" class="sm-btn sm-left"><i class="sm-icon-arrow-left7"></i> 返回</a>
+      <a href="#form" class="sm-btn sm-right" >反馈</a>
+    </div>
+    <div class="sm-content">
+      <div v-if="loading">
+        <div class="sm-text-center sm-padding-m"><span class="sm-loading"></span></div>
+      </div>
+      <div style="background:url(../fetch?url={{content.image}}) center no-repeat; background-size:cover; height:200px;"></div>
+      <div  class="sm-text-m"  v-html="content.body">
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="sm-page" style=" backface-visibility: hidden; "   data-page="form">
+    <div class="sm-topbar"><!--javascript:window.history.back()-->
+      <a href="javascript:window.history.back()" class="sm-btn sm-right"> 完成 </a>
+    </div>
+    <div class="sm-content">
+      <form class="sm-list">
+        <div class="divider">您喜欢那些类型的文章？</div>
+        <label class="item sm-check">
+          <input type="checkbox">足球
+        </label>
+        <label class="item sm-check">
+          <input type="checkbox">动漫
+        </label>
+        <label class="item sm-check">
+          <input type="checkbox">游戏
+        </label>
+        <label class="item sm-check">
+          <input type="checkbox">财经
+        </label>
+        <label class="item sm-check">
+          <input type="checkbox">电影
+        </label>
+        <label class="item sm-check">
+          <input type="checkbox">音乐
+        </label>
+        <div class="divider">您对本期的内容满意吗？</div>
+        <label class="item sm-radio">
+          <input type="radio" name="likeit">非常满意
+        </label>
+        <label class="item sm-radio">
+          <input type="radio" name="likeit">满意
+        </label>
+        <label class="item sm-radio">
+          <input type="radio" name="likeit">一般
+        </label>
+        <label class="item sm-radio">
+          <input type="radio" name="likeit">不满意
+        </label>
+        <!-- <div class="divider">联系方式</div>
+        <label class="sm-input">
+          <span class="input-label">姓名</span>
+          <input type="text" placeholder="必填" >
+        </label>-->
+        <label class="item sm-input">
+          <span class="input-label">电子邮箱</span>
+          <input type="text" placeholder="必填" >
+        </label>
+        <label class="item sm-input">
+          <span class="input-label">备注</span>
+          <textarea name="" id="" placeholder="选填"></textarea>
+        </label>
+        <label class="item sm-toggle">
+          <input type="checkbox">开启邮件订阅功能
+        </label>
+
+        <div class="sm-padding-m sm-text-center">
+          <input class="sm-btn  block primary" onclick="window.history.back()" type="button" value="提交">
+        </div> 
+      </form>
+      
+    </div>
+  </div>
+
+  <script src="js/vue.js"></script>
+  <script src="../js/smoothie.js"></script>
+  <script src="../js/router.js"></script>
+  <script src="daily.js"></script>
+</body>
+</html>
