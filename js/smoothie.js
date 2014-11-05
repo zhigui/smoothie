@@ -53,7 +53,8 @@ var Smoothie = (function (argument) {
 
       var sm = {
         init:init,
-        show:show,
+        closePage:closePage,
+        close:close,
         addPage:addPage,
         getPage:getPage
       };
@@ -77,8 +78,7 @@ var Smoothie = (function (argument) {
 
     var TransitonStyle={
       "slide-left": 'back',
-      "slide-up": 'slide-down',
-      "custom": 'custom-back'
+      "slide-up": 'slide-down'
     }
     var showPage = function(pageName, type, callback){
       if(!type) 
@@ -105,7 +105,12 @@ var Smoothie = (function (argument) {
       dom = null;
       delete pages[pageName];
     }
-
+    var closePage = function(){
+      if(pageHistory.length>1){
+        var page = pageHistory[pageHistory.length-2];
+        show(page);
+      }
+    }
     var show = function(pageName, type, callback){
 
       // if(!transitionFinished) return; 
@@ -162,7 +167,7 @@ var Smoothie = (function (argument) {
       }
 
 
-      pageTransition(page, currentPage, type);
+      pageTransition(page, currentPage, type, isBack);
 
       if(isBack){
       // if(type === 'slide-down' || type === 'back'){
@@ -218,11 +223,11 @@ var Smoothie = (function (argument) {
       utils.fireEvent("show", page);
     }
 
-    var pageTransition = function(pageToShow, oldpage, type){
+    var pageTransition = function(pageToShow, oldpage, type, isBack){
       if(type in TransitonStyle ){
         pageToShow.pageout = TransitonStyle[type];
       }else{
-        pageToShow.pageout = type+"-back";
+        if(!isBack)pageToShow.pageout = type+"-back";
       }
       var duration = "300ms";
       switch(type){
