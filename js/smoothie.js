@@ -45,7 +45,7 @@ var Smoothie = (function (argument) {
     }
     
 
-    init=function(){
+    var init=function(){
       var pageNodes = document.getElementsByClassName("sm-page");
       for(var i=pageNodes.length; i--;){
         addPage( pageNodes[i] );
@@ -61,7 +61,9 @@ var Smoothie = (function (argument) {
       return sm;
     }
 
-    addPage = function(page){
+
+
+    var addPage = function(page){
       pageName = page.getAttribute("data-page");
       if(page.parentNode){
         page.parentNode.removeChild(page);
@@ -69,15 +71,16 @@ var Smoothie = (function (argument) {
       pages[pageName] = page.cloneNode(true);
     }
 
-    getPage = function(pageName){
+    var getPage = function(pageName){
       return pages[pageName];
     }
 
     var TransitonStyle={
       "slide-left": 'back',
-      "slide-up": 'slide-down'
+      "slide-up": 'slide-down',
+      "custom": 'custom-back'
     }
-    showPage = function(pageName, type, callback){
+    var showPage = function(pageName, type, callback){
       if(!type) 
         type = 'slide-left';
       if(typeof type === "function")
@@ -95,7 +98,7 @@ var Smoothie = (function (argument) {
 
     }
 
-    removePage = function(pageName){
+    var removePage = function(pageName){
       var dom = getPage(pageName);
       if (dom.parentNode != null)
           dom.parentNode.removeChild(dom);
@@ -103,7 +106,7 @@ var Smoothie = (function (argument) {
       delete pages[pageName];
     }
 
-    show = function(pageName, type, callback){
+    var show = function(pageName, type, callback){
 
       // if(!transitionFinished) return; 
       if(!type) type = "slide-left";
@@ -117,9 +120,9 @@ var Smoothie = (function (argument) {
 
       if(pageHistory.length<1){
         document.body.appendChild(page);
-        if(type in TransitonStyle ){
-          page.pageout = TransitonStyle[type];
-        }
+        // if(type in TransitonStyle ){
+          // page.pageout = TransitonStyle[type];
+        // }
         pushPage(pageName);
 
  
@@ -161,7 +164,8 @@ var Smoothie = (function (argument) {
 
       pageTransition(page, currentPage, type);
 
-      if(type === 'slide-down' || type === 'back'){
+      if(isBack){
+      // if(type === 'slide-down' || type === 'back'){
         popPage();
       }else{
         pushPage(pageName);
@@ -169,16 +173,31 @@ var Smoothie = (function (argument) {
 
 
       if(currentPage){
-        currentPage.addEventListener('webkitTransitionEnd', finishTransition, false);
-        currentPage.addEventListener('transitionend', finishTransition, false);
+        if(!isBack){
+          page.addEventListener('webkitTransitionEnd', finishTransition, false);
+          page.addEventListener('transitionend', finishTransition, false);
+          page.addEventListener('webkitAnimationEnd', finishTransition, false);
+          page.addEventListener('animationend', finishTransition, false);
+        }else{
+          currentPage.addEventListener('webkitTransitionEnd', finishTransition, false);
+          currentPage.addEventListener('transitionend', finishTransition, false);
+          currentPage.addEventListener('webkitAnimationEnd', finishTransition, false);
+          currentPage.addEventListener('animationend', finishTransition, false);
+        }
+        
       }
       
 
       function finishTransition () {
-        currentPage.removeEventListener('webkitTransitionEnd', finishTransition);
-        currentPage.removeEventListener('transitionend', finishTransition);
+        this.removeEventListener('webkitTransitionEnd', finishTransition);
+        this.removeEventListener('transitionend', finishTransition);
+        this.removeEventListener('webkitAnimationEnd', finishTransition);
+        this.removeEventListener('animationend', finishTransition);
         // currentPage.remove();
-        
+        // 
+        currentPage.className = currentPage.className.replace(/sm-(leave|enter)-[^\s \"]*/ig, '');
+        page.className = page.className.replace(/sm-(leave|enter)-[^\s \"]*/ig, '');
+
         if (currentPage.parentNode != null)
           currentPage.parentNode.removeChild(currentPage);
 
@@ -199,10 +218,11 @@ var Smoothie = (function (argument) {
       utils.fireEvent("show", page);
     }
 
-    
-    pageTransition = function(pageToShow, oldpage, type){
+    var pageTransition = function(pageToShow, oldpage, type){
       if(type in TransitonStyle ){
         pageToShow.pageout = TransitonStyle[type];
+      }else{
+        pageToShow.pageout = type+"-back";
       }
       var duration = "300ms";
       switch(type){
@@ -235,7 +255,6 @@ var Smoothie = (function (argument) {
           },50)
 
           break;
-
         case 'slide-up':
           utils.css(oldpage,{
               'Transition':cssPrefix+"transform 0ms",
@@ -316,8 +335,27 @@ var Smoothie = (function (argument) {
               'Transform' : 'translate3d(0,0,0)'
             } )
 
-          },50)
+          },50);
+          break;
+        default:
+          if(type.lastIndexOf("-back")>0){
+               
+              document.body.insertBefore( pageToShow, oldpage );
+              // oldpage.classList.remove("sm-enter");
+              oldpage.classList.add("sm-leave-"+type);
 
+              // pageToShow.classList.remove("sm-leave");
+              pageToShow.classList.add("sm-enter-"+type);
+           }else{
+              document.body.appendChild(pageToShow);
+              // oldpage.classList.remove("sm-enter");
+              oldpage.classList.add("sm-leave-"+type);
+
+              // pageToShow.classList.remove("sm-leave");
+              pageToShow.classList.add("sm-enter-"+type);
+              break;
+           }
+         
       }
       
 
