@@ -67,13 +67,13 @@ var router = S.Router({
   routes:{
     '': "default",
     'news/:id':"detail",
-    'form':"test"
+    'form/:effect':"test"
   },
-  test:function(){
+  test:function(effect){
     // app.show("form", 'slide-up');
     // console.log(this);
-    app.show("form", 'scale');
-    console.log(this);
+    app.show("form", effect);
+     
   },
   default:function(){
     app.show("home");    

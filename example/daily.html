@@ -17,6 +17,8 @@
   <meta name="browsermode" content="application"/>
   <link rel="stylesheet" type="text/css" href="../dist/smoothie.css">
   <link rel="stylesheet" type="text/css" href="../fonts/fonts.css">
+  <link rel="stylesheet" type="text/css" href="animate.css">
+
   <link rel="stylesheet" type="text/css" href="http://news.at.zhihu.com/css/news_qa.auto.css">
   <style>
     .sm-page{
@@ -43,23 +45,49 @@
         -webkit-animation: fadeout .5s;
     }
 
-    @-webkit-keyframes myAnimation1 { 
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+    
+    .sm-enter-up{
+      -webkit-animation: zoomInUp .5s;
     }
-    @-webkit-keyframes myAnimation2 { 
-        0% { opacity: 1; }
-        100% { opacity: 0; }
+
+    .sm-leave-up-back {
+        -webkit-animation: zoomOutUp .5s;
     }
+
+    .sm-enter-rotate{
+      -webkit-animation: rotateInUpLeft .5s;
+    }
+
+    .sm-leave-rotate-back {
+        -webkit-animation: rotateOutDownLeft .5s;
+    }
+
+    .sm-enter-flip{
+      -webkit-animation: flipInY .5s;
+    }
+
+    .sm-leave-flip-back {
+        -webkit-animation: flipOutY .5s;
+    }
+
+    .sm-enter-special{
+      -webkit-animation: rollIn .8s;
+    }
+
+    .sm-leave-special-back {
+        -webkit-animation: hinge .8s;
+    }
+
 
     @-webkit-keyframes fadein {
         0% {
-            
+            -webkit-transform: scale(0);
             transform: scale(0);
             opacity: 0;
         }
  
         100% {
+            -webkit-transform: scale(1);
             transform: scale(1);
             opacity: 1;
         }
@@ -68,16 +96,17 @@
   
     @-webkit-keyframes fadeout {
       0% {
+        -webkit-transform: scale(1);
           transform: scale(1);
           opacity: 1;  
       }
  
       100% {
+          -webkit-transform: scale(0);
           transform: scale(0);
           opacity: 0;
       }
     }
- 
   </style>
 </head>
 <body>
@@ -102,7 +131,11 @@
   <div class="sm-page" id="detail-view" data-page="detail">
     <div class="sm-topbar"><!--javascript:window.history.back()-->
       <a href="#" class="sm-btn sm-left"><i class="sm-icon-arrow-left7"></i> 返回</a>
-      <a href="#form" class="sm-btn sm-right" >反馈</a>
+      <a href="#form/scale" class="sm-btn sm-right" >Scale</a>
+      <a href="#form/up" class="sm-btn sm-right" >Up</a>
+      <a href="#form/rotate" class="sm-btn sm-right" >Rotate</a>
+      <a href="#form/flip" class="sm-btn sm-right" >Flip</a>
+       <a href="#form/special" class="sm-btn sm-right" >Other</a>
     </div>
     <div class="sm-content">
       <div v-if="loading">
