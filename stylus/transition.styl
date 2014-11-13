@@ -1,0 +1,115 @@
+@import './node_modules/nib/index'
+
+.sm-enter-slide-left
+  animation-name: smInRight;
+  animation-duration: .4s;
+  animation-iteration-count: 1;
+  
+.sm-leave-slide-left
+  animation-name: smOutHalfLeft;
+  animation-duration: .4s;
+
+.sm-enter-slide-left-back
+  animation-name: smInHalfLeft;
+  animation-duration: .4s;
+
+.sm-leave-slide-left-back 
+  animation-name: smOutRight;
+  animation-duration: .4s;
+  
+
+
+.sm-enter-slide-up
+  animation-name: smInBottom;
+  animation-duration: .4s;
+  animation-iteration-count: 1;
+  
+.sm-leave-slide-up
+  animation-name: smOutHalfTop;
+  animation-duration: .4s;
+
+.sm-enter-slide-up-back
+  animation-name: smInHalfTop;
+  animation-duration: .4s;
+
+.sm-leave-slide-up-back 
+  animation-name: smOutBottom;
+  animation-duration: .4s;
+  
+ 
+// slide left animation
+
+@keyframes smInRight
+  0%
+    transform translate3d(100%,0,0)
+    
+  100%
+    transform translate3d(0%,0,0)
+
+@keyframes smOutRight
+  0%
+    // opacity 1
+    transform translate3d(0,0,0)    
+  100%
+    // opacity 0.5
+    transform translate3d(100%,0,0)
+
+@keyframes smInHalfLeft
+  0%
+    // opacity 0.5
+    transform translate3d(-30%,0,0)   
+  100%
+    // opacity 1
+    transform translate3d(0,0,0)
+    
+     
+@keyframes smOutHalfLeft
+  0%
+    // opacity 1
+    transform translate3d(0,0,0)
+    
+  100%
+    // opacity 0.5
+    transform translate3d(-30%,0,0)
+
+
+
+//slide up animation 
+
+@keyframes smInBottom
+  0%
+    transform translate3d(0,100%,0)
+    
+  100%
+    transform translate3d(0,0,0)
+
+@keyframes smOutBottom
+  0%
+    // opacity 1
+    transform translate3d(0,0,0)    
+  100%
+    // opacity 0.5
+    transform translate3d(0,100%,0)
+
+@keyframes smInHalfTop
+  0%
+    // opacity 0.5
+    transform translate3d(0,-20%,0)   
+  100%
+    // opacity 1
+    transform translate3d(0,0,0)
+    
+     
+@keyframes smOutHalfTop
+  0%
+    // opacity 1
+    transform translate3d(0,0,0)
+    
+  100%
+    // opacity 0.5
+    transform translate3d(0,-20%,0)
+    
+
+  
+   
+
