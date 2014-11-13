@@ -1,5 +1,5 @@
-;(function(win, sm){
-  if (typeof sm == 'undefined') {
+;(function(win){
+  if (typeof win.Smoothie == 'undefined') {
     win.Smoothie = sm = {};
   }
 
@@ -26,9 +26,9 @@
 
     var options = {
       url:"",
-      method:"GET"
+      method:"GET",
       data:{},
-      dataType:"json"
+      dataType:"json",
       success:function(){},
       error:function(){}
     }
@@ -78,4 +78,4 @@
   }
 
 
-})(window, Smoothie);
+})(window);

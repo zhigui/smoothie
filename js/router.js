@@ -1,7 +1,7 @@
 //Router module is reference from the Backbone.js
 
-;(function(win, sm){
-  if (typeof sm == 'undefined') {
+;(function(win){
+  if (typeof win.Smoothie == 'undefined') {
     win.Smoothie = sm = {};
   }
 
@@ -103,4 +103,4 @@
   };
 
 
-})(window, Smoothie);
+})(window);
