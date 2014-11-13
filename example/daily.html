@@ -18,6 +18,7 @@
   <link rel="stylesheet" type="text/css" href="../dist/smoothie.css">
   <link rel="stylesheet" type="text/css" href="../fonts/fonts.css">
   <link rel="stylesheet" type="text/css" href="animate.css">
+   <link rel="stylesheet" type="text/css" href="../dist/transition.css">
 
   <link rel="stylesheet" type="text/css" href="http://news.at.zhihu.com/css/news_qa.auto.css">
   <style>
@@ -131,6 +132,7 @@
   <div class="sm-page" id="detail-view" data-page="detail">
     <div class="sm-topbar"><!--javascript:window.history.back()-->
       <a href="#" class="sm-btn sm-left"><i class="sm-icon-arrow-left7"></i> 返回</a>
+      <a href="#modal" class="sm-btn sm-left">modal</a>
       <a href="#form/scale" class="sm-btn sm-right" >Scale</a>
       <a href="#form/up" class="sm-btn sm-right" >Up</a>
       <a href="#form/rotate" class="sm-btn sm-right" >Rotate</a>
@@ -146,6 +148,10 @@
         
       </div>
     </div>
+  </div>
+
+  <div class="sm-page"  style="background-color:rgba(0,0,0,0.5)" data-page="modal">
+   <a href="#modal2" class="sm-btn" > hello world</a>
   </div>
 
   <div class="sm-page" style=" backface-visibility: hidden; "   data-page="form">
