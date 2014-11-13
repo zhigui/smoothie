@@ -43,25 +43,6 @@ var Smoothie = (function (argument) {
         targetEle.dispatchEvent(evt);
       }
     }
-    
-
-    var init=function(){
-      var pageNodes = document.getElementsByClassName("sm-page");
-      for(var i=pageNodes.length; i--;){
-        addPage( pageNodes[i] );
-      }
-
-      var sm = {
-        init:init,
-        closePage:closePage,
-        show:show,
-        addPage:addPage,
-        getPage:getPage
-      };
-
-      return sm;
-    }
-
 
 
     var addPage = function(page){
@@ -76,28 +57,6 @@ var Smoothie = (function (argument) {
       return pages[pageName];
     }
 
-    var TransitonStyle={
-      "slide-left": 'back',
-      "slide-up": 'slide-down'
-    }
-    var showPage = function(pageName, type, callback){
-      if(!type) 
-        type = 'slide-left';
-      if(typeof type === "function")
-        callback = type;
-      var that = this;
-      var pageToShow = getPage(pageName);
-      var currentPageName =  pageHistory[pageHistory.length-1];
-      var currentPage = getPage(currentPageName);
-
-      pageTransition(pageToShow, currentPage, type);
-
-      if(pageHistory.length<1){
-        document.body.appendChild
-      }
-
-    }
-
     var removePage = function(pageName){
       var dom = getPage(pageName);
       if (dom.parentNode != null)
@@ -105,44 +64,49 @@ var Smoothie = (function (argument) {
       dom = null;
       delete pages[pageName];
     }
+
     var closePage = function(){
       if(pageHistory.length>1){
         var page = pageHistory[pageHistory.length-2];
         show(page);
       }
     }
-    var show = function(pageName, type, callback){
 
-      // if(!transitionFinished) return; 
-      if(!type) type = "slide-left";
-      if(typeof type === "function")
-        callback = type;
+    var show = function(pageName, type, isModal){
+      isModal = isModal || false;
+      if(type === true){// show("name", true);
+        isModal = true;
+        type = "slide-up";//default modal value
+      }
 
+      type = type || "slide-left"
+      
       var that = this;
       var page=pages[pageName];
 
+      if(!page){
+        console.error("the target page is empty"); 
+        return;
+      }
       
 
+      // if the page history is empty 
+      // no animation transition
       if(pageHistory.length<1){
         document.body.appendChild(page);
-        // if(type in TransitonStyle ){
-          // page.pageout = TransitonStyle[type];
-        // }
         pushPage(pageName);
-
- 
 
         if(!page.firstLoad) {
           page.firstLoad = true;
-          utils.fireEvent("ready", page);    
+          utils.fireEvent("ready", page);//deprecated
+          utils.fireEvent("first", page);    
         }
-        if(typeof callback === "function")
-          callback(page); 
-
+         
+        utils.fireEvent("load", page);
         utils.fireEvent("show", page);
-
         return;
       }
+
 
 
       var currentName = pageHistory[pageHistory.length-1];
@@ -153,6 +117,7 @@ var Smoothie = (function (argument) {
       var currentPage = getPage(currentName);
       var prevName = pageHistory[pageHistory.length-2];
       
+
       //if the page want to switch in the history we think it's back
       //var isBack = pageHistory.indexOf(pageName) > -1  ? true : false;
       var isBack = ( prevName == pageName )? true : false;
@@ -170,7 +135,6 @@ var Smoothie = (function (argument) {
       pageTransition(page, currentPage, type, isBack);
 
       if(isBack){
-      // if(type === 'slide-down' || type === 'back'){
         popPage();
       }else{
         pushPage(pageName);
@@ -179,191 +143,74 @@ var Smoothie = (function (argument) {
 
       if(currentPage){
         if(!isBack){
-          page.addEventListener('webkitTransitionEnd', finishTransition, false);
-          page.addEventListener('transitionend', finishTransition, false);
-          page.addEventListener('webkitAnimationEnd', finishTransition, false);
-          page.addEventListener('animationend', finishTransition, false);
+          page.addEventListener( prefix =='' ? 'transitionend' : prefix+'TransitionEnd', finishTransition, false);
+          page.addEventListener( prefix =='' ?'animationend' : prefix+'AnimationEnd', finishTransition, false);
         }else{
-          currentPage.addEventListener('webkitTransitionEnd', finishTransition, false);
-          currentPage.addEventListener('transitionend', finishTransition, false);
-          currentPage.addEventListener('webkitAnimationEnd', finishTransition, false);
-          currentPage.addEventListener('animationend', finishTransition, false);
+          currentPage.addEventListener( prefix =='' ? 'transitionend' : prefix+'TransitionEnd', finishTransition, false);
+          currentPage.addEventListener( prefix =='' ?'animationend' : prefix+'AnimationEnd', finishTransition, false);
         }
         
       }
       
 
       function finishTransition () {
-        this.removeEventListener('webkitTransitionEnd', finishTransition);
-        this.removeEventListener('transitionend', finishTransition);
-        this.removeEventListener('webkitAnimationEnd', finishTransition);
-        this.removeEventListener('animationend', finishTransition);
-        // currentPage.remove();
-        // 
+        this.removeEventListener(prefix =='' ? 'transitionend' : prefix+'TransitionEnd', finishTransition); 
+        this.removeEventListener(prefix =='' ?'animationend' : prefix+'AnimationEnd', finishTransition);
+        
+        // clear the transition class
         currentPage.className = currentPage.className.replace(/sm-(leave|enter)-[^\s \"]*/ig, '');
         page.className = page.className.replace(/sm-(leave|enter)-[^\s \"]*/ig, '');
 
-        if (currentPage.parentNode != null)
-          currentPage.parentNode.removeChild(currentPage);
+        if ( currentPage.parentNode != null)
+          if(!isModal || (isModal&&isBack))
+            currentPage.parentNode.removeChild(currentPage);
+
 
         utils.fireEvent("hide", currentPage);
-        // that.transitionFinished = true;
-        //unblock ui
+        utils.fireEvent("show", page);
+
         document.body.style.pointerEvents = '';
 
       }
 
       if(!page.firstLoad) {
         page.firstLoad = true;
-        utils.fireEvent("ready", page); 
+        utils.fireEvent("ready", page);//deprecated
+        utils.fireEvent("first", page);   
       }
-      if(typeof callback === "function")
-        callback(page);
-
-      utils.fireEvent("show", page);
+       
+      utils.fireEvent("load", page);
+      utils.fireEvent("unload", currentPage);
     }
 
     var pageTransition = function(pageToShow, oldpage, type, isBack){
-      if(type in TransitonStyle ){
-        pageToShow.pageout = TransitonStyle[type];
-      }else{
-        if(!isBack)pageToShow.pageout = type+"-back";
-      }
-      var duration = "300ms";
-      switch(type){
 
-
-        case 'back'://slide-right
-        
-
-          utils.css(pageToShow,{
-            'Transition' : cssPrefix + 'transform ' + duration,
-            'Transform' : 'translate3d(-30%,0,0)'
-          } );
-
-          document.body.insertBefore( pageToShow, oldpage );
-          // currentPage.style.webkitTransition="-webkit-transform 0ms";
-          // currentPage.style.webkitTransform='translate3d(0,0,0)';
-
-
-          setTimeout(function(){
-            utils.css(oldpage,{
-              'Transition':cssPrefix+'transform ' + duration,
-              'Transform' : 'translate3d(100%,0,0)'
-            } )
-
-            utils.css(pageToShow,{
-              'Transition':cssPrefix+'transform ' + duration,
-              'Transform' : 'translate3d(0,0,0)'
-            } )
-             
-          },50)
-
-          break;
-        case 'slide-up':
-          utils.css(oldpage,{
-              'Transition':cssPrefix+"transform 0ms",
-              'Transform' : 'translate3d(0,0,0)'
-            } )
-
-          utils.css(pageToShow,{
-            'Transition':cssPrefix+'transform ' + duration,
-            'Transform' : 'translate3d(0, 100%, 0)'
-          } )
+      if(!isBack)pageToShow.pageout = type+"-back";
+       
+      pageToShow.style.visibility = "hidden";
+      if(type.lastIndexOf("-back")>0){
            
-          document.body.appendChild(pageToShow);
-
-          setTimeout(function(){
-            utils.css(oldpage,{
-              'Transition':cssPrefix+'transform  ' + duration,
-              'Transform' : 'translate3d(0,-10%,0)'
-            } )
-
-            utils.css(pageToShow,{
-              'Transition':cssPrefix+'transform ' + duration,
-              'Transform' : 'translate3d(0, 0, 0)'
-            } )
-
-          },50)
-          break;
-        case 'slide-down':
-          utils.css(pageToShow,{
-            'Transition':cssPrefix+'transform ' + duration,
-            'Transform' : 'translate3d(0,-10%,0)'
-          } )
-          utils.css(oldpage,{
-            'Transition':cssPrefix+'transform  ' + duration,
-            'Transform' : 'translate3d(0, 0, 0)'
-          } )
-
           document.body.insertBefore( pageToShow, oldpage );
-          // currentPage.style.webkitTransition="-webkit-transform 0ms";
-          // currentPage.style.webkitTransform='translate3d(0,0,0)';
-
-
           setTimeout(function(){
-            utils.css(oldpage,{
-              'Transition':cssPrefix+'transform  ' + duration,
-              'Transform' : 'translate3d(0, 100%, 0)'
-            } )
-
-            utils.css(pageToShow,{
-              'Transition':cssPrefix+'transform ' + duration,
-              'Transform' : 'translate3d(0,0,0)'
-            } )
-            
-          },50)
-
-          break;
-        case 'slide-left':
-
-          utils.css(oldpage,{
-            'Transition':cssPrefix+'transform   0ms',
-            'Transform' : 'translate3d(0,0,0)'
-          } )
-
-          utils.css(pageToShow,{
-            'Transition':cssPrefix+'transform ' + duration,
-            'Transform' : 'translate3d(100%,0,0)'
-          } )
-
+            pageToShow.style.visibility = "";
+            // oldpage.classList.remove("sm-enter");
+            oldpage.classList.add("sm-leave-"+type);
+            // pageToShow.classList.remove("sm-leave");
+            pageToShow.classList.add("sm-enter-"+type);
+          },0)
+      }else{
+          
           document.body.appendChild(pageToShow);
-
+          // pageToShow.style.display = "";
+          // oldpage.classList.remove("sm-enter");
           setTimeout(function(){
-            utils.css(oldpage,{
-              'Transition':cssPrefix+'transform   ' + duration,
-              'Transform' : 'translate3d(-10%,0,0)'
-            } )
-
-            utils.css(pageToShow,{
-              'Transition':cssPrefix+'transform ' + duration,
-              'Transform' : 'translate3d(0,0,0)'
-            } )
-
-          },50);
-          break;
-        default:
-          if(type.lastIndexOf("-back")>0){
-               
-              document.body.insertBefore( pageToShow, oldpage );
-              // oldpage.classList.remove("sm-enter");
-              oldpage.classList.add("sm-leave-"+type);
-
-              // pageToShow.classList.remove("sm-leave");
-              pageToShow.classList.add("sm-enter-"+type);
-           }else{
-              document.body.appendChild(pageToShow);
-              // oldpage.classList.remove("sm-enter");
-              oldpage.classList.add("sm-leave-"+type);
-
-              // pageToShow.classList.remove("sm-leave");
-              pageToShow.classList.add("sm-enter-"+type);
-              break;
-           }
-         
-      }
-      
-
+            pageToShow.style.visibility = "";
+            oldpage.classList.add("sm-leave-"+type);
+            // pageToShow.classList.remove("sm-leave");
+            pageToShow.classList.add("sm-enter-"+type);
+          },0);
+          
+      } 
     }
 
     pushPage = function(pageName){
@@ -373,7 +220,26 @@ var Smoothie = (function (argument) {
       return pageHistory.pop();
     }
 
+
+  var init=function(){
+    var pageNodes = document.getElementsByClassName("sm-page");
+    for(var i=pageNodes.length; i--;){
+      addPage( pageNodes[i] );
+    }
+
+    var sm = {
+      init:init,
+      closePage:closePage,
+      show:show,
+      addPage:addPage,
+      getPage:getPage
+    };
+
+    return sm;
+  }
+
   return {
+    version:"1.0.0",
     start: function() {
       if(!instantiated) {
         instantiated = init();
