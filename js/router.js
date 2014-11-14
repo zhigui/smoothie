@@ -1,9 +1,7 @@
 //Router module is reference from the Backbone.js
 
 ;(function(win){
-  if (typeof win.Smoothie == 'undefined') {
-    win.Smoothie = sm = {};
-  }
+  var sm = win.Smoothie = win.Smoothie || {};
 
   function Router(options){
     this._routes=[];

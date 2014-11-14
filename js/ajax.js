@@ -1,8 +1,6 @@
 ;(function(win){
-  if (typeof win.Smoothie == 'undefined') {
-    win.Smoothie = sm = {};
-  }
-
+  
+  var sm = win.Smoothie = win.Smoothie || {};
 
   function forms(obj){
     var formData = new FormData();
@@ -40,7 +38,7 @@
     var xhr = new XMLHttpRequest();
     xhr.onload = function(e) {
       var result=this.response;
-      var error = false;
+      var error = false, dataType = options.dataType;
       if (this.status == 200) {
         try {
           if (dataType == 'script')    (1,eval)(result)
