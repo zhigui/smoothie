@@ -1023,13 +1023,15 @@ p {
   text-overflow: ellipsis;
   font-size: 1.6rem;
   color: #f1f1f1;
+  font-weight: bold;
   margin: 0;
   pointer-events: none;
 }
 .sm-topbar .sm-btn {
   line-height: 44px;
-  margin: 0 8px;
-  padding: 0;
+  padding: 0 8px;
+  margin: 0;
+  min-width: 44px;
   background-color: transparent;
   border: none;
   color: #fff;
@@ -1528,13 +1530,14 @@ p {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   padding: 10px 16px;
+  border: transparent;
 }
 .sm-btn.space {
   margin-top: 8px;
 }
 .sm-btn.small {
-  font-size: 1.4rem;
-  padding: 4px 10px;
+  font-size: 1.2rem;
+  padding: 8px 10px;
 }
 .sm-btn.middle {
   font-size: 1.4rem;
