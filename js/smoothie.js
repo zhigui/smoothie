@@ -41,6 +41,28 @@ var Smoothie = (function (argument) {
           evt.initEvent(eventName, true, true);
         }
         targetEle.dispatchEvent(evt);
+      },
+      addClass : function (el, cls) {
+        if (el.classList) {
+          el.classList.add(cls);
+        } else {
+          var cur = ' ' + (el.getAttribute('class') || '') + ' ';
+          if (cur.indexOf(' ' + cls + ' ') < 0) {
+            el.setAttribute('class', (cur + cls).trim());
+          }
+        }
+      },
+      removeClass : function (el, cls) {
+        if (el.classList) {
+          el.classList.remove(cls)
+        } else {
+          var cur = ' ' + (el.getAttribute('class') || '') + ' ';
+          var tar = ' ' + cls + ' ';
+          while (cur.indexOf(tar) >= 0) {
+            cur = cur.replace(tar, ' ');
+          }
+          el.setAttribute('class', cur.trim());
+        }
       }
     }
 
@@ -194,9 +216,12 @@ var Smoothie = (function (argument) {
           setTimeout(function(){
             pageToShow.style.visibility = "";
             // oldpage.classList.remove("sm-enter");
-            oldpage.classList.add("sm-leave-"+type);
+            utils.addClass(oldpage, "sm-leave-"+type );
+            // oldpage.classList.add("sm-leave-"+type);
             // pageToShow.classList.remove("sm-leave");
-            pageToShow.classList.add("sm-enter-"+type);
+            utils.addClass(pageToShow, "sm-enter-"+type );
+            // pageToShow.classList.add("sm-enter-"+type);
+             
           },0)
       }else{
           
@@ -205,9 +230,12 @@ var Smoothie = (function (argument) {
           // oldpage.classList.remove("sm-enter");
           setTimeout(function(){
             pageToShow.style.visibility = "";
-            oldpage.classList.add("sm-leave-"+type);
+            // oldpage.classList.add("sm-leave-"+type);
+            utils.addClass(oldpage, "sm-leave-"+type);
+
             // pageToShow.classList.remove("sm-leave");
-            pageToShow.classList.add("sm-enter-"+type);
+            // pageToShow.classList.add("sm-enter-"+type);
+            utils.addClass(pageToShow, "sm-enter-"+type);
           },0);
           
       } 
