@@ -7,11 +7,13 @@ Layout
 
 .sm-flex
   for $i in 0...12
-    & > *[quota=\"{$i}\"]
+    $str = '"' + $i +'"'
+    & > *[quota={$str}]
       flex $i
 
   for $i in 1...12
-    & > *[order=\"{$i}\"]
+    $str = '"' + $i +'"'
+    & > *[order={$str}]
       order $i
   
   &[orientation="vertical"]

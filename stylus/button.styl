@@ -1,6 +1,7 @@
 @require 'color.styl'
 
 .sm-btn
+  box-sizing border-box
   display inline-block
   vertical-align: baseline;
   text-align center
@@ -33,7 +34,7 @@
     padding 10px 15px
   &.blank
     background-color #fff
-    border 1px solid CGRAY
+    // border 1px solid CGRAY
     color #666
   &.block
     // width 100%
@@ -45,6 +46,7 @@
     color CPRIMARY
     border 1px solid CPRIMARY
     background-color transparent!important
+    padding 9px 16px
     &.blank
       border-color #666
 
@@ -80,6 +82,7 @@
       color CDARKBLUE
   &.blank
     color #666
+    // padding 9px 16px
   &.success
     background-color CSUCCESS
   &.info
