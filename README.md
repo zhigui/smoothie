@@ -1,5 +1,6 @@
 #Smoothie
 
+演示：[知乎日报](http://zhigui.github.io/zhihu-daily/)
 
 ##Smoothie.js
 
@@ -23,7 +24,7 @@ You can access your page dom with the `data-page` value:
 var home = app.getPage("home");
 ```
 
-show page on the main screen:
+Show page on the main screen:
 ```
 app.show("home");
 ```
@@ -31,16 +32,20 @@ show a modal page on the screen:
 ```
 app.show("home", true)
 ```
-![page![Alt text](http://ww4.sinaimg.cn/large/6e8f3d1dgw1enbpfh53opg208u0danhu.gif)
-](http://ww4.sinaimg.cn/large/6e8f3d1dgw1enbpfh53opg208u0danhu.gif)
+
+
+
+![Alt text](http://ww4.sinaimg.cn/large/6e8f3d1dgw1enbpfh53opg208u0danhu.gif)
+
+
 ##Page Events
 
 
-`first` Fired when page load at the first time:
-`load` Fired when page showed(animation effect ended)
-`unload` Fired when page hide(animation effect ended)
-`show` Fired when page show
-`hide` Fired when page hide
+- `first` Fired when page load at the first time.
+- `load` Fired when page showed(animation effect ended).
+- `unload` Fired when page hidded(animation effect ended).
+- `show` Fired when page showing.
+- `hide` Fired when page hiding.
 
 ```
 var home = app.getPage("home");
