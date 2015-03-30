@@ -2,6 +2,9 @@
 
 演示：[知乎日报](http://zhigui.github.io/zhihu-daily/)
 
+![smoothie gif](http://ww4.sinaimg.cn/large/6e8f3d1dgw1enbpfh53opg208u0danhu.gif)
+
+
 ##Smoothie.js
 
 Add the smoothie.js to your document.
@@ -33,9 +36,6 @@ show a modal page on the screen:
 app.show("home", true)
 ```
 
-
-
-![Alt text](http://ww4.sinaimg.cn/large/6e8f3d1dgw1enbpfh53opg208u0danhu.gif)
 
 
 ##Page Events
